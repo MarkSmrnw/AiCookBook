@@ -1,2 +1,6 @@
 MARK:
 1. RecipeRotation fertig machen
+
+
+PROBLEME:
+1. In der Recipe rotation wird der interval nicht pausiert wenn man raustabbt. D.H dass sich die bilder u. beschreibungen weiterhin ändern und verbuggt werden.
