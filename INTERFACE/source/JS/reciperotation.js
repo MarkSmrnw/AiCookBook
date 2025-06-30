@@ -8,16 +8,14 @@ document.addEventListener("DOMContentLoaded", function() {
             "Burgers", 
             "Salad", 
             "Curry", 
-            "Pasta", 
             "Steak", 
-            "Soup", 
             "Ramen"
         ]
         const images = [
             "source/media/images/spaghetti.webp",
             "source/media/images/pizza.webp",
             "source/media/images/sushi.webp",
-            "source/media/images/tacos.webp",
+            "source/media/images/taco.webp",
             "source/media/images/burger.webp",
             "source/media/images/salad.webp",
             "source/media/images/curry.webp",
@@ -36,7 +34,28 @@ document.addEventListener("DOMContentLoaded", function() {
             "A Japanese noodle soup consisting of Chinese-style wheat noodles served in a meat- or fish-based broth."
         ]
 
-        // TO DO: [MARK] 
-        //
+        const rotationContainer = document.getElementById("recipe-rotation-wrapper")
+
+        const randomIndex = Math.floor(Math.random() * food.length)
+        const randomFood = food[randomIndex]
+        const randomImage = images[randomIndex]
+        const randomDescription = descriptions[randomIndex]
+
+        rotationContainer.innerHTML = `
+            <div class="card bg-dark text-white recipe-rotation" style="width: 18rem;">
+                <img src="${randomImage}" class="card-img-top" alt="${randomFood}">
+                <div class="card-body">
+                    <h5 class="card-title">${randomFood}</h5>
+                    <p class="card-text">${randomDescription}</p>
+                    <a href="#" class="btn btn-primary">Try it!</a>
+                </div>
+            </div>
+        `
     }
+
+    showDishes()
+    setInterval(() => {
+        showDishes()
+    }, interval = 5000)
+
 });

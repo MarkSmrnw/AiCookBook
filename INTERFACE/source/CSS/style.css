@@ -21,9 +21,12 @@
     margin-top: 2rem;
 }
 
-#recipe-rotation {
+#recipe-rotation-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+
+    height: 25rem;
+    
 }
