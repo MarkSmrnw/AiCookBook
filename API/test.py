@@ -1,5 +1,3 @@
 import os
+from secret import GEMINIKEY
 
-from dotenv import load_dotenv
-
-print(load_dotenv())
