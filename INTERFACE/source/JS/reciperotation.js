@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+    let showDishInterval
+
     function showDishes() {
         const food = [
             "Spaghetti", 
@@ -53,9 +56,11 @@ document.addEventListener("DOMContentLoaded", function() {
         `
     }
 
-    showDishes()
-    setInterval(() => {
-        showDishes()
+    
+    showDishInterval = setInterval(() => {
+        if (document.hasFocus()) {showDishes()}
     }, interval = 5000)
+
+    if (document.hasFocus()) {showDishes()}
 
 });
