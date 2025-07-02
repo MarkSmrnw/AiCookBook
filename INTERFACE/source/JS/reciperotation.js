@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     let showDishInterval;
+    let timeout;
 
         const rezept = [
             {name: "Standard Spaghetti", image:"source/media/images/spaghetti.webp", beschreibung: "A classic Italian pasta dish made with durum wheat semolina." , typ: ["Vegan", "Vegetarian", "Lactose-free"]},
@@ -62,6 +63,14 @@ document.addEventListener("DOMContentLoaded", function() {
             const randomDescription = rezept[randomIndex].beschreibung
             const foodTypes = rezept[randomIndex].typ
 
+            let foodText = ""
+
+            for (let i in foodTypes) {
+                if (i == 0) {foodText = foodTypes[i]} 
+                else if (i == foodTypes.length-1) {foodText = `${foodText} and ${foodTypes[i]}`} 
+                else if (!foodTypes.length > 1) {foodText = `${foodText}, ${foodTypes[i]}`}
+            }
+
             //recipe-rotation
 
             divone = document.createElement("div");
@@ -87,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let ptwo = document.createElement("p");
             ptwo.classList.add("card-text");
-            ptwo.textContent = foodTypes;
+            ptwo.textContent = foodText;
 
             let a = document.createElement("a");
             a.href = "#";
@@ -106,26 +115,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
             lastitem = randomIndex
 
-                 /*divone.addEventListener("mouseenter", () =>{
-                     console.log("in")
-                     clearInterval(showDishInterval);
-                 })
+                divone.addEventListener("mouseenter", () =>{
+                    console.log("in")
+                    clearInterval(showDishInterval);
+                    clearTimeout(timeout)
+                    divone.classList.remove('scale-normal');
+                    divone.classList.add('scale-big');
+                })
              
-                 divone.addEventListener("mouseleave", () =>{
-                     console.log("out")
-
-                 showDishInterval = setInterval(() => {
-                     divone.remove();
-                     showDishes()
-                 }, 5000)
-                 })*/
+                divone.addEventListener("mouseleave", () =>{
+                    console.log("out")
+                    divone.classList.remove("scale-big")
+                    divone.classList.add("scale-normal")
+                    outroanimation();
+                    showDishInterval = setInterval(() => {
+                    divone.remove();
+                    showDishes()
+                    outroanimation();
+                }, 5000)
+            })
         }
 
         showDishes()
+        outroanimation();
 
     showDishInterval = setInterval(() => {
         divone.remove();
         showDishes()
+        outroanimation();
     }, 5000)
+
+function outroanimation(){
+            timeout = setTimeout(() =>{
+            divone.classList.remove("recipe-rotation")
+            divone.classList.add("recipe-rotation-outro")
+            setTimeout(()=>{
+                divone.remove();
+            }, 2000)
+        }, 2000)
+}
 
 });

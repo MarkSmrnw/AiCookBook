@@ -10,7 +10,11 @@
 
     <link rel="stylesheet" href="source/CSS/style.css">
     <link rel="stylesheet" href="source/CSS/anim.css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css"/>
+
+    <script src="source/JS/DBhandler.js" type="module"></script>
 </head>
+
 <body class="darkmode secondary" style="overflow-x: hidden;">
     
     <div class="container"> <!-- START CONTAINER -->
@@ -28,12 +32,18 @@
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="#">Recipes</a>
+                <a class="nav-link" href="recipies.html">Recipes</a>
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="#"> About us</a>
+                <a class="nav-link" href="#">About us</a>
                 </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="chat.html">Chat</a>
+                </li>
+
+                <li class="nav-item" id="firebaseui-auth-container"></li>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -44,12 +54,12 @@
         </nav>
 
         <div class="content darkmode text">
-            <div id="title">
+            <div class="title">
                 Cooking but simplified.
             </div>
         </div>
 
-        <div id="recipe-rotation-wrapper"> 
+        <div id="recipe-rotation-wrapper" class="darkmode secondary"> 
             <!-- CONTENT WIRD IN DER JS GENERIERT-->
         </div>
 
