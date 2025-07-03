@@ -35,14 +35,14 @@ auth.onAuthStateChanged((user) => {
         }
     } else {
         console.log('User is signed out')
-        initializeFirebaseUI();
+        initializeFirebaseUI()
     }
-});
+})
 
 function initializeFirebaseUI() {
     const authContainer = document.getElementById('firebaseui-auth-container')
     
-    if (authContainer && authContainer.innerHTML.trim() === '') {
+    if (authContainer && authContainer.innerHTML.trim() == '') {
         var ui = new firebaseui.auth.AuthUI(auth);
         
         ui.start('#firebaseui-auth-container', {
