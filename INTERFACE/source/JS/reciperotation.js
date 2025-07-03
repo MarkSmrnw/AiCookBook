@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let timeout;
 
         const rezept = [
-            {name: "Standard Spaghetti", image:"source/media/images/spaghetti.webp", beschreibung: "A classic Italian pasta dish made with durum wheat semolina." , typ: ["Vegan", "Vegetarian", "Lactose-free"]},
+            {name: "Spaghetti", image:"source/media/images/spaghetti.webp", beschreibung: "A classic Italian pasta dish made with durum wheat semolina." , typ: ["Vegan", "Vegetarian", "Lactose-free"]},
             {name: "Salami Pizza", image:"source/media/images/pizza.webp", beschreibung: "A popular dish consisting of a flat round base topped with various ingredients.", typ: ["Egg-free", "Nut-free", "Soy-free"]},
             {name: "Sushi", image:"source/media/images/sushi.webp", beschreibung: "A Japanese dish of vinegared rice accompanied by various ingredients, such as seafood and vegetables.", typ: ["Nut-free", "Yeast-free", "Lactose-free"]},
             {name: "Tacos",  image:"source/media/images/taco.webp", beschreibung: "A traditional Mexican dish consisting of a folded or rolled tortilla filled with various ingredients.", typ: ["Egg-free", "Nut-free", "Yeast-free"]},
@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
             {name: "Fried Rice", image:"source/media/images/Fried-Rice.webp", beschreibung: "Stir-fried rice with vegetables, eggs, and optionally chicken or shrimp, seasoned with soy sauce.", typ: ["Nut-free", "Yeast-free", "Gluten-free"]},
             {name: "Omelette", image:"source/media/images/Omelette.webp", beschreibung: "Eggs beaten and fried in a pan, filled with cheese, vegetables, or ham.", typ: ["Vegetarian", "Soy-free", "Nut-free"]},
             {name: "Baked Potato", image:"source/media/images/Baked-Potato.webp", beschreibung: "A whole potato baked until soft, often topped with butter, sour cream, or cheese.", typ: ["Vegan", "Vegetarian", "Lactose-free"]},
-            {name: "Gulasch", image:"source/media/images/Gulasch.webp", beschreibung: "A hearty stew of beef, onions, and paprika, slow-cooked to develop rich flavors, popular in Central Europe.", typ: ["Lactose-free", "Egg-free", "Nut-free"]},
+            {name: "Goulash", image:"source/media/images/Gulasch.webp", beschreibung: "A hearty stew of beef, onions, and paprika, slow-cooked to develop rich flavors, popular in Central Europe.", typ: ["Lactose-free", "Egg-free", "Nut-free"]},
             {name: "Currywurst", image:"source/media/images/Currywurst.webp", beschreibung: "Sliced sausage topped with a spiced ketchup-based curry sauce, often served with fries.", typ: ["Yeast-free", "Nut-free", "Soy-free"]},
-            {name: "Schnitzel", image:"source/media/images/Schnitzel.webp", beschreibung: "Breaded and fried meat cutlet, typically pork or chicken, served with potatoes or salad.", typ: ["Soy-free", "Nut-free", "Yeast-free"]},
+            {name: "Cutlet", image:"source/media/images/Schnitzel.webp", beschreibung: "Breaded and fried meat cutlet, typically pork or chicken, served with potatoes or salad.", typ: ["Soy-free", "Nut-free", "Yeast-free"]},
             {name: "Roast Chicken", image:"source/media/images/Roast-Chicken.webp", beschreibung: "Whole chicken seasoned and roasted until crispy on the outside and juicy inside.", typ: ["Soy-free", "Nut-free", "Yeast-free"]},
             {name: "Egg Salad Sandwich", image:"source/media/images/Egg-Salad-Sandwich.webp", beschreibung: "Chopped boiled eggs mixed with mayonnaise, often served cold on bread or toast.", typ: ["Vegetarian", "Nut-free", "Lactose-free"]},
             {name: "Pelmeni", image:"source/media/images/Pelmeni.webp", beschreibung: "Russian-style dumplings made with thin dough and filled with minced meat (usually pork, beef, or lamb), boiled and served with sour cream or butter.", typ: ["Lactose-free", "Nut-free", "Yeast-free"]},
@@ -43,10 +43,13 @@ document.addEventListener("DOMContentLoaded", function() {
             {name: "Onigiri", image:"source/media/images/Onigiri.webp", beschreibung: "Rice balls filled with tuna, pickled plum, or salmon, wrapped in seaweed.", typ: ["Lactose-free", "Gluten-free", "Egg-free"]},
             {name: "Mochi", image:"source/media/images/Mochi.webp", beschreibung: "Sticky rice cakes with sweet fillings like red bean paste, matcha, or fruit.", typ: ["Vegetarian", "Yeast-free", "Egg-free"]}
         ]
-
-    let lastitem;
-    let divone
+        
+        let lastitem;
+        let divone
+        let animation;
     function showDishes() {
+
+        animation = true;
 
         const rotationContainer = document.getElementById("recipe-rotation-wrapper")
 
@@ -115,8 +118,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
             lastitem = randomIndex
 
-                divone.addEventListener("mouseenter", () =>{
-                    console.log("in")
+            setTimeout(() => {
+                animation = false;
+            }, 2000);
+            
+            divone.addEventListener("mouseenter", () =>{
+                
+                if(animation) return;
+                console.log("in")
+
                     clearInterval(showDishInterval);
                     clearTimeout(timeout)
                     divone.classList.remove('scale-normal');
@@ -124,15 +134,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
              
                 divone.addEventListener("mouseleave", () =>{
+                if(animation) return;
                     console.log("out")
                     divone.classList.remove("scale-big")
                     divone.classList.add("scale-normal")
                     outroanimation();
                     showDishInterval = setInterval(() => {
-                    divone.remove();
                     showDishes()
                     outroanimation();
-                }, 5000)
+                }, 7000)
             })
         }
 
@@ -140,19 +150,19 @@ document.addEventListener("DOMContentLoaded", function() {
         outroanimation();
 
     showDishInterval = setInterval(() => {
-        divone.remove();
         showDishes()
         outroanimation();
-    }, 5000)
+    }, 7000)
 
 function outroanimation(){
-            timeout = setTimeout(() =>{
+    timeout = setTimeout(() =>{
+            animation = true;
             divone.classList.remove("recipe-rotation")
             divone.classList.add("recipe-rotation-outro")
             setTimeout(()=>{
                 divone.remove();
             }, 2000)
-        }, 2000)
+        }, 4000)
 }
 
 });

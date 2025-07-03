@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Resipes</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
@@ -54,33 +54,39 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-body-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">cook.ai</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">cook.ai</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="#">Home</a>
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Recipes</a>
+                <a class="nav-link active" aria-current="page" href="recipies.html">Recipes</a>
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="#"> About us</a>
+                <a class="nav-link" href="#">About us</a>
                 </li>
-                
-                <li class="nav-item" id="firebaseui-auth-container"></li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="chat.html">Chat</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="changeNameAfterToggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Login
+                </a>
+                <ul class="dropdown-menu bg-dark text-white text-center" id="dropdownmenu" style="min-width: 20rem">
+                    <li id="firebaseui-auth-container"></li>
+                </ul>
+                </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
             </div>
         </div>
-        </nav> <!-- END NAV-->
+        </nav>
 
         <div class="title text-white" style="text-align: left;">
             Top pics for you
@@ -209,7 +215,6 @@
         </div>
 
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 
 </body>
