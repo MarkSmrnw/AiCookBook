@@ -10,6 +10,7 @@ IDEEN:
 3. Abfrage, ob Filter und Chatverläufe von der AI in ,,Erinnerung” bleiben darf, damit die AI für spätere Anfragen, das berücksichtigen kann.
 4. Filter für Essen, was bestimmte Sachen nicht beinhalten darf oder z.B., dass es Vegan oder Vegetarisch sein soll.
 5. KI kann, wenn man was essen will, was aber etwas beinhaltet, was man nicht drinne haben will, es durch etwas anderes ersetzen, z.B. bei Salami Pizza, die Salami durch Vegane Salami ersetzen oder auch ganz entfernen aus dem Rezept, je nachdem was der Nutzer lieber will.
+6. Rezepte basierend auf welche Produkte eine Person hat und Kochmöglichkeiten z.B ofen / Heißluftfritöse
 
 PROBLEME:
 1. In der Recipe rotation wird der interval nicht pausiert wenn man raustabbt. D.H dass sich die Bilder u. Beschreibungen weiterhin ändern und verbuggt werden.

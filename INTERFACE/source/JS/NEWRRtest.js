@@ -123,32 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let requiresNewCard = true
     let mostRecentPicks = []
 
+    let exitChecks = 0
 
-    function addTiltEffect(card) {
-        function handleMouseMove(e) {
-            if (!mouseCaptured) return;
-            
-            const rect = card.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            const mouseX = e.clientX - centerX;
-            const mouseY = e.clientY - centerY  
-
-            const rotateY = -(mouseX / (rect.width / 2)) *  20
-            const rotateX = -(mouseY / (rect.height / 2)) * 20  
-            
-            card.classList.add("tilting")  
-            card.style.transform = `scale(1.05) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`  
-        }
-
-        function resetTilt() {
-            card.classList.remove("tilting")  
-            card.style.transform = ''  
-        }
-
-        return { handleMouseMove, resetTilt }  
-    }
 
     function updateMostRecent(newi = "NONE") { // Updated die mostRecentPicks liste. Neu vorne, alt hinten.
         if (newi != "NONE") {
@@ -191,17 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(function() {
                 card.classList.remove("recipe-rotation")
 
-                // Add tilt effect
-                const { handleMouseMove, resetTilt } = addTiltEffect(card)  
-
                 function mouseEnterLogic() {
-                    mouseCaptured = true
-                    document.addEventListener('mousemove', handleMouseMove)  
+                    mouseCaptured = true 
                 }
                 function mouseExitLogic() {
                     mouseCaptured = false
-                    document.removeEventListener('mousemove', handleMouseMove)  
-                    resetTilt()  
                 }
                 
                 card.addEventListener("mouseenter", mouseEnterLogic)
@@ -209,32 +179,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 mouseEnterEvent = mouseEnterLogic
                 mouseLeaveEvent = mouseExitLogic
-                mouseMoveEvent = handleMouseMove
 
                 setTimeout(() => {
                     allowedToLeave = true
                 }, 1000)  
-
             }, 2000)
 
         }
 
-        if (allowedToLeave && mouseCaptured != true && document.hasFocus()) { allowedToLeave = false
-            const card = document.getElementById("latestCard")
+        if (allowedToLeave && mouseCaptured != true && document.hasFocus()) { 
+            if (exitChecks >= 10) {
+                allowedToLeave = false
+                const card = document.getElementById("latestCard")
 
-            card.removeEventListener("mouseenter", mouseEnterEvent)
-            card.removeEventListener("mouseleave", mouseLeaveEvent)
-            document.removeEventListener('mousemove', mouseMoveEvent)  
+                card.removeEventListener("mouseenter", mouseEnterEvent)
+                card.removeEventListener("mouseleave", mouseLeaveEvent)
+                document.removeEventListener('mousemove', mouseMoveEvent)  
 
-            card.classList.add("recipe-rotation-outro")
-            card.style = "width: 18rem; opacity:0;"
+                card.classList.add("recipe-rotation-outro")
+                card.style = "width: 18rem; opacity:0;"
 
             setTimeout(() => {
                 requiresNewCard = true
             }, 3000)
-        }
+            } else exitChecks++
+        } else {exitChecks = 0}
     }
 
     setInterval(main, 100)
-    
 })
