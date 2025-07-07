@@ -67,23 +67,35 @@
     border-radius: 10px;
     box-sizing: border-box;
     padding: 10px;
+    margin-right: 30px;
 }
 .usermessage::before{
-    position: absolute;
-    transform: translate(0, -50%);
-    left: -10%;
-    top: 50%;
-    content: "hallo";
-    border-radius: 10px;
+  content: "👤"; 
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -30px; 
 }
+
 .botmessage{
+    background-color: #4CAF50;
+    position: relative;
     width: auto;
     max-width: 80%;
-    background-color: #4CAF50;
     align-self: start;
     word-break: break-all;
+    animation: 0.5s ease-in-out;
+    opacity: 1;
     border: 1px solid black;
     border-radius: 10px;
     box-sizing: border-box;
     padding: 10px;
+    margin-left: 30px;
+}
+.botmessage::before{
+  content: "🤖"; 
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -30px; 
 }

@@ -1,4 +1,6 @@
 *.env
 
 secret.py
+
+*/KEYS/*
 __pycache__

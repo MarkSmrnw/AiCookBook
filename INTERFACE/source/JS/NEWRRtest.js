@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     allowedToLeave = true
                 }, 1000)  
-            }, 2000)
+            }, 2000) 
 
         }
 

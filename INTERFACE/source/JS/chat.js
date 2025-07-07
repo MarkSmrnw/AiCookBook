@@ -2,8 +2,7 @@ let chatbox = document.getElementById("chatbox");
 let input = document.getElementById("input");
 let send = document.getElementById("send");
 
-let botmessage = document.createElement("div");
-botmessage.className = "botmessage";
+
 
 
 function sendMessage(){
@@ -30,4 +29,32 @@ input.addEventListener("keydown", (event) => {
         event.preventDefault();
         sendMessage();
     }
+    requestShowcase();
 });
+
+
+async function requestShowcase() {
+    let antwort = await fetch("http://127.0.0.1:6969/test", {
+        method : "POST",
+        headers : {"Content-Type":"application/json"},
+        body : JSON.stringify({"prompt": "Say hello!"})
+    })
+
+    if (antwort.ok) {
+
+        let data = await antwort.json()
+
+        if (data["response"]) {
+            console.log(data["response"])
+        } else console.log("no response")
+
+        // let botmessage = document.createElement("div");
+        // botmessage.className = "botmessage";
+        // chatbox.appendChild(botmessage);
+        // botmessage.textContent = antwort;
+    } else console.log("not ok")
+}
+
+requestShowcase()
+
+fetch("http://192.168.10.47:6969/ping")
