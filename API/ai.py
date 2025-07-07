@@ -2,6 +2,8 @@ import os
 import flask
 import dotenv
 
+import aitools
+
 from flask import request, jsonify, Flask
 from flask_cors import CORS
 
@@ -10,6 +12,18 @@ from google import genai
 dotenv.load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+MASTER_PROMPT = """
+Your name is 'cook.ai'. Your main objective is to deliver recipes to the user wich are adapted to the users preferences or alergies.
+
+Aim to be respectful to the user and to adapt all responses to be adjusted to the users liking.
+
+Tools:
+
+You are not currently in posession of any tools.
+
+Rules:
+    - Be nice, no matter what."""
 
 client = genai.Client()
 flaskclient = Flask(__name__)
