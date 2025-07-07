@@ -52,41 +52,7 @@
 <body class="darkmode secondary">
     <div class="container">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-body-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">cook.ai</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-                </li>
-
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="recipies.html">Recipes</a>
-                </li>
-
-                <li class="nav-item">
-                <a class="nav-link" href="#">About us</a>
-                </li>
-
-                <li class="nav-item">
-                <a class="nav-link" href="chat.html">Chat</a>
-                </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="changeNameAfterToggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Login
-                </a>
-                <ul class="dropdown-menu bg-dark text-white text-center" id="dropdownmenu" style="min-width: 20rem">
-                    <li id="firebaseui-auth-container"></li>
-                </ul>
-                </li>
-            </ul>
-            </div>
-        </div>
-        </nav>
+        <div id="navbar-container"></div>
 
         <div class="title text-white" style="text-align: left;">
             Top pics for you
@@ -217,5 +183,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 
+    <script src="source/JS/load_includes.js"></script>
 </body>
 </html>
