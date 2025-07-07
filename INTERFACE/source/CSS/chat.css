@@ -1,10 +1,7 @@
 #chatdiv{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 80%;
-    width: 40%;
+
+    height: 80vh;
+    width: 100%;
     border: 12px solid lightgrey;
     border-radius: 10px;
     background-color: white;
@@ -58,6 +55,7 @@
     cursor: pointer;
 }
 .usermessage{
+    position: relative;
     width: auto;
     max-width: 80%;
     background-color: white;
@@ -69,6 +67,14 @@
     border-radius: 10px;
     box-sizing: border-box;
     padding: 10px;
+}
+.usermessage::before{
+    position: absolute;
+    transform: translate(0, -50%);
+    left: -10%;
+    top: 50%;
+    content: "hallo";
+    border-radius: 10px;
 }
 .botmessage{
     width: auto;
