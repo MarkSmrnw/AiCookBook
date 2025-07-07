@@ -55,6 +55,15 @@ async function requestShowcase() {
     } else console.log("not ok")
 }
 
+input.addEventListener("input", () => {
+  if (input.value.trim() === "") {
+    send.style.backgroundColor = "rgb(108, 108, 108)";
+  } else {
+    send.style.backgroundColor = "#4CAF50";
+  }
+});
+
+
 requestShowcase()
 
 fetch("http://192.168.10.47:6969/ping")
