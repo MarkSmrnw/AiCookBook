@@ -17,6 +17,7 @@ usermessage.className = "usermessage";
 
 chatbox.appendChild(usermessage);
 usermessage.textContent = input.value;
+requestShowcase();
 input.value = ""
 }
 
@@ -29,15 +30,14 @@ input.addEventListener("keydown", (event) => {
         event.preventDefault();
         sendMessage();
     }
-    requestShowcase();
 });
 
 
 async function requestShowcase() {
-    let antwort = await fetch("http://127.0.0.1:6969/test", {
+    let antwort = await fetch("https://geminiapireq.smrnw.de/test", {
         method : "POST",
         headers : {"Content-Type":"application/json"},
-        body : JSON.stringify({"prompt": "Say hello!"})
+        body : JSON.stringify({"prompt": input.value, "userId":123})
     })
 
     if (antwort.ok) {
@@ -48,22 +48,19 @@ async function requestShowcase() {
             console.log(data["response"])
         } else console.log("no response")
 
-        // let botmessage = document.createElement("div");
-        // botmessage.className = "botmessage";
-        // chatbox.appendChild(botmessage);
-        // botmessage.textContent = antwort;
+         let botmessage = document.createElement("div");
+         botmessage.className = "botmessage";
+         chatbox.appendChild(botmessage);
+         botmessage.textContent = data["response"];
     } else console.log("not ok")
 }
 
-input.addEventListener("input", () => {
-  if (input.value.trim() === "") {
-    send.style.backgroundColor = "rgb(108, 108, 108)";
-  } else {
-    send.style.backgroundColor = "#4CAF50";
-  }
-});
+ input.addEventListener("input", () => {
+   if (input.value.trim() === "") {
+     send.style.backgroundColor = "rgb(108, 108, 108)";
+   } else {
+     send.style.backgroundColor = "#4CAF50";
+   }
+ });
 
-
-requestShowcase()
-
-fetch("http://192.168.10.47:6969/ping")
+fetch("https://geminiapireq.smrnw.de/ping")

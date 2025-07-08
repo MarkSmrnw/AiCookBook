@@ -102,7 +102,6 @@ document.addEventListener("DOMContentLoaded", function() {
             ptwo.textContent = foodText;
 
             let a = document.createElement("a");
-            a.href = "#";
             a.classList.add("btn", "btn-primary");
             a.textContent = "Try it!";
 

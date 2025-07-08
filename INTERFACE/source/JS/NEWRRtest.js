@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newCard = createCard(
                 foods[randomIndex].name,
                 foods[randomIndex].beschreibung,
-                `<a href="#" class="btn btn-secondary">Try it!</a>`,
+                `<a href="chat.html" class="btn btn-secondary">Try it!</a>`,
                  foods[randomIndex].image,
                 [], "width: 18rem;", true, "latestCard" // OPACITY HINZUFÜGEN
             )
