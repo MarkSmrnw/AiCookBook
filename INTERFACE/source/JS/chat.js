@@ -1,9 +1,52 @@
+// const { ZeroShotImageClassificationPipeline } = require("@huggingface/transformers");
+
 let chatbox = document.getElementById("chatbox");
 let input = document.getElementById("input");
 let send = document.getElementById("send");
 let welcomemessage = document.getElementById("startwelcomemessage")
 let usermessage = document.createElement("div")
+let chatslist = document.querySelectorAll(".chatAdd, .chatItem")
+let collapse = document.getElementsByClassName("collapselist")[0]
+let collapseimg = collapse.querySelector("img");
+let collapsep = collapse.querySelector("p")
+let chatsbox = document.getElementById("chatlist")
 let sending;
+
+let offen = true;
+collapse.addEventListener("click", () => {
+    if (offen) {
+        chatsbox.style.zIndex = "-1";
+        chatsbox.style.position = "absolute"
+        collapse.style.maxWidth = "55px";
+        collapseimg.style.width = "40px";
+        collapseimg.style.height = "40px";
+        collapsep.style.display = "none";
+
+        chatslist.forEach((l) => {
+            l.classList.add("chat-collapsed");
+            setTimeout(()=>{
+                l.style.left = "-600px"
+            },250)
+        });
+
+        offen = false;
+    } else {
+        chatsbox.style.zIndex = "10";
+        chatsbox.style.position = ""
+        collapse.style.maxWidth = "300px";
+        collapseimg.style.width = "";
+        collapseimg.style.height = "";
+        collapsep.style.display = "";
+        
+        chatslist.forEach((l) => {
+            l.classList.remove("chat-collapsed");
+            l.style.left = "0"
+        });
+
+        offen = true;
+    }
+});
+
 
 let placeholders = [
     "Are you hungry?", "Welcome!", "Looking for new recipies?"

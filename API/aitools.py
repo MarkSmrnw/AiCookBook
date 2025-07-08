@@ -14,5 +14,5 @@ def getUserPreferedLanguage(USERID:str) -> str:
 
     print("CALLED USER LANG CALLED", USERID)
 
-    return "russian"
+    return "polish"
 

@@ -16,68 +16,26 @@
     <link rel="shortcut icon" href="source/media/images/WHITE-MODE-LOGO2.png" type="image/x-icon">
   </head>
 
-  <style>
-    #chatlist > ul > li {
-      background-color: #212529;
-      padding: 2%;
 
-      border-radius: 20px;
-
-      list-style-type: none;
-      margin: 5%;
-
-      cursor: pointer;
-    }
-
-    #chatlist > ul > li > img {
-      filter: invert(0%); /* FÜR LIGHTMODE: INVERT 100%! */
-      margin-top: auto; margin-bottom: auto;
-    }
-
-    @media (max-width:991px) {
-      #chatlist > ul .chatItem {
-        width: auto;
-        opacity: 0;
-      }
-
-      #chatlist > ul .chatAdd {
-        color: rgba(255, 255, 255, 0);
-        max-height:fit-content;
-        max-width: fit-content;
-      }
-      #chatlist > ul > li .chatAdd > img{
-        width: 100%;
-      }
-
-
-      #chatlist > ul > li .chatAdd > p{
-        display: none;
-      }
-      #chatliste{
-        background-color: green;
-      }
-    }
-
-  </style>
 <body class="darkmode secondary">
 
   <div class="container">
     <div id="navbar-container"></div>
   </div>
 
-  <div style="display: flex;" class="text-white">
+  <div style="display: flex; position: relative; z-index: 100;" class="text-white">
   <div id="chatlist" style="width: 30%">
     <ul>
-      <li><img src="source/media/symbols/menu.svg" alt="menu_button"> Collapse chats</li></li>
+      <li class="collapselist"><img src="source/media/symbols/menu.svg" alt="menu_button"> <p>Collapse chats</p></li></li>
       <br>
       <li class="chatAdd"><img src="source/media/symbols/add.svg" alt="plus"> <p>New Chat</p></li>
-      <li class="chatItem"><img src="source/media/symbols/arrowright.svg" alt="arrow_right"> test</li>
-      <li class="chatItem"><img src="source/media/symbols/arrowright.svg" alt="arrow_right"> test</li>
+      <li class="chatItem"><img src="source/media/symbols/arrowright.svg" alt="arrow_right"><p>test</p></li>
+      <li class="chatItem"><img src="source/media/symbols/arrowright.svg" alt="arrow_right"><p>test</p></li>
     </ul>
   </div>
   
 
-  <div class="container">
+  <div class="container" style="position: relative; z-index: 0;">
     
     <div id="chatdiv">
       <div id="chatbox">

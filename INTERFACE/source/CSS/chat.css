@@ -7,7 +7,6 @@
     width: 100%;
     border-radius: 10px;
     top: 5vh;
-    /* background-image: linear-gradient(to top, #ff0000 0%, #696969 100%); */
 }
 #chatbox{
     height: 80%;
@@ -138,3 +137,108 @@ hr{
         background-position: -100% 0;
     }
 }
+
+
+    #chatlist {
+      z-index: 10;
+      width: 20%;
+      height: 100%;
+      background-color: #343a40;
+      overflow-y: auto;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    .collapselist{
+        max-width: 300px;
+        position: relative;
+        z-index: 100;
+        transition: all 0.5s ease-in-out;
+    }
+
+    #chatlist > ul {
+     padding: 0;
+     list-style-type: none;
+
+    }
+    .chatItem, .chatAdd {
+     max-width: 300px;
+     position: relative;
+     left: 0;
+     transition: all 0.5s ease-in-out;
+    }
+    .chat-collapsed {
+        max-width: 55px;
+    }
+
+    #chatlist > ul > li {
+      background-color: #212529;
+      padding: 2%;
+
+
+      border-radius: 20px;
+
+      list-style-type: none;
+      margin: 5% 0 5% 0;
+
+      cursor: pointer;
+    }
+
+    #chatlist > ul > li > img {
+      filter: invert(0%); /* FÜR LIGHTMODE: INVERT 100%! */
+      margin-top: auto; margin-bottom: auto;
+    }
+
+    @media (max-width: 791px) {
+
+
+    .collapselist{
+      width: fit-content;
+    }
+    .collapselist > img{
+      width: 50px;
+      height: 50px;
+    }
+    .collapselist > p{
+      display: none;
+    }
+    .chatAdd{
+      width: fit-content;
+    }
+    .chatAdd > img{
+      width: 50px;
+      height: 50px;
+    }
+    .chatAdd > p{
+      display: none;
+    }
+    .chatItem{
+      width: fit-content;
+    }
+    .chatItem > img{
+      width: 30px;
+      height: 30px;
+    }
+    .chatItem > p{
+      display: none;
+    }
+    }
+
+    @media (max-width: 400px){
+        #chatlist {
+            position: absolute;
+
+        }
+        .collapselist{
+            width: 40px;
+        }
+        .collapselist > img{
+            width: 40px;
+            height: 40px;
+        }
+        .chatAdd{
+            display: none;
+        }
+        .chatItem{
+            display: none;
+        }
+    }
