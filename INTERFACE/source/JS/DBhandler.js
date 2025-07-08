@@ -17,11 +17,15 @@ firebase.initializeApp(firebaseConfig)
 const auth = firebase.auth()
 const db = firebase.database()
 
+let UID;
+
 auth.onAuthStateChanged((user) => {
     const authContainer = document.getElementById('firebaseui-auth-container')
     
     if (user) {
         console.log('User is signed in:', user)
+        UID = user.uid
+
         if (authContainer) {
 
             const firebaseContainer = document.getElementById("firebaseui-auth-container")
@@ -39,10 +43,26 @@ auth.onAuthStateChanged((user) => {
     }
 })
 
+function saveUserData(uid) {
+
+  if (typeof name === "undefined") name = "/";
+  if (typeof allergies === "undefined") allergies = "/";
+  if (typeof preference === "undefined") preference = "/";
+  const userData = {
+            name,
+            allergies,
+            preference,
+  };
+
+  firebase.database().ref("users/" + uid).set(userData);
+}
+
 function initializeFirebaseUI() {
     const authContainer = document.getElementById('firebaseui-auth-container')
     
     if (authContainer && authContainer.innerHTML.trim() == '') {
+
+        console.log("Auth Container exsists")
         var ui = new firebaseui.auth.AuthUI(auth);
         
         ui.start('#firebaseui-auth-container', {
@@ -53,7 +73,7 @@ function initializeFirebaseUI() {
                 },
                 {
                     provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                    requireDisplayName: true
+                    requireDisplayName: false
                 }
             ],
             callbacks: {
@@ -69,7 +89,7 @@ function initializeFirebaseUI() {
             signInFlow: 'popup', 
             credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO
         });
-    }
+    } else if (!authContainer) setTimeout(() => {initializeFirebaseUI(); console.log("retrying")}, 1000)
 }
 
 window.signOut = function() {
@@ -79,4 +99,8 @@ window.signOut = function() {
     }).catch((error) => {
         console.error('Sign out error:', error)
     })
+}
+
+function returnUserId() {
+    return UID
 }

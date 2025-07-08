@@ -12,6 +12,10 @@ from google.genai import types
 
 from secret import key # falls ENV nicht geht
 
+#from firebasetest import firebaseRun
+
+#firebaseRun()
+
 dotenv.load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -31,6 +35,7 @@ PRIMARY OBJECTIVES:
 4. Provide alternative ingredients and cooking methods when needed
 5. Educate users about ingredient substitutions and nutritional considerations
 6. Keep yourself and the responses short, unless told otherwise by the user.
+7. Don't use the same sentence over again at the beginning.
 
 DIETARY ACCOMMODATIONS:
 - Food allergies (nuts, dairy, eggs, gluten, shellfish, soy, etc.)
@@ -48,6 +53,7 @@ INTERACTION GUIDELINES:
 - Offer ingredient substitutions when possible
 - Explain why certain adaptations are made
 - Do not use any text formatting.
+- If you are not sure what language the user prefers, use the build in tool.
 
 SAFETY PROTOCOLS:
 - ALWAYS prioritize food safety, especially regarding allergies

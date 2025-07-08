@@ -6,30 +6,32 @@
     height: 80vh;
     width: 100%;
     border-radius: 10px;
+    top: 5vh;
     /* background-image: linear-gradient(to top, #ff0000 0%, #696969 100%); */
 }
 #chatbox{
     height: 80%;
-    width: 100%;
+    width: 80%;
     overflow-y: auto;
     padding: 10px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     font-size: 24px;
 }
 #inputsection{
     position: absolute;
     bottom: 1%;
     height: 60px;
-    width: clamp(60%, 70%, 100%);
+    width: clamp(60%, 50%, 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(87, 87, 87);
     gap: 10px;
-    border: 1px solid black;
+    
+    box-shadow: 1px 1px 1px 2px black;
+
     border-radius: 20px;
 }
 #input{
@@ -74,7 +76,7 @@
     border-radius: 10px;
     box-sizing: border-box;
     padding: 10px;
-    margin-right: 40px;
+    margin-right: 50px;
     color: white;
 }
 .usermessage::before{
@@ -82,7 +84,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: -40px; 
+    right: -50px; 
 }
 
 .botmessage{
@@ -96,19 +98,43 @@
     border-radius: 10px;
     box-sizing: border-box;
     padding: 10px;
-    margin-left: 40px;
+    margin-left: 50px;
     color: white;
 }
 .botmessage::before{
     content: "";
-    background-image: url("INTERFACE/source/media/images/LIGHT-MODE-LOGO.png");
+    background-image: url("/INTERFACE/source/media/images/WHITE-MODE-LOGO2.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
-    height: 30px;
-    width: 30px;
+    height: 60px;
+    width: 60px;
     top: 50%;
     transform: translateY(-50%);
-    left: -40px; 
+    left: -50px; 
+}
+hr{
+    position: relative;
+    color: white;
+}
+#startwelcomemessage > h4{
+    background: linear-gradient(45deg, white 0%, rgb(0, 0, 0) 10%, rgba(255, 255, 255, 1) 30%, #ffffff 50%, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 1) 100%);
+    background-size: 300% auto;
+    background-clip: text;
+    color: transparent;
+    background-position: -100% 0%;
+    animation: helloflow 10s linear infinite;
+}
+
+@keyframes helloflow {
+    0% {
+        background-position: 100% 0;
+    }
+    20% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
 }

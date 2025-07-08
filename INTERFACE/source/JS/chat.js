@@ -1,9 +1,15 @@
 let chatbox = document.getElementById("chatbox");
 let input = document.getElementById("input");
 let send = document.getElementById("send");
+let welcomemessage = document.getElementById("startwelcomemessage")
+let usermessage = document.createElement("div")
+let sending;
 
-
-
+let placeholders = [
+    "Are you hungry?", "Welcome!", "Looking for new recipies?"
+]
+let rand = Math.floor(Math.random() * placeholders.length)
+input.placeholder = placeholders[rand] 
 
 function sendMessage(){
     
@@ -12,28 +18,39 @@ function sendMessage(){
         return
     };
 
-let usermessage = document.createElement("div");
 usermessage.className = "usermessage";
+
+if (welcomemessage) welcomemessage.remove()
 
 chatbox.appendChild(usermessage);
 usermessage.textContent = input.value;
 requestShowcase();
 input.value = ""
+
+chatbox.scrollTo({
+  top: chatbox.scrollHeight,
+  behavior: "smooth"
+});
 }
 
 send.addEventListener("click", () =>{
+    if(sending == true) return;
     sendMessage();
 })
 
 input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
+        if(sending == true) return;
         sendMessage();
     }
 });
 
 
 async function requestShowcase() {
+
+    sending = true;
+
     let antwort = await fetch("https://geminiapireq.smrnw.de/test", {
         method : "POST",
         headers : {"Content-Type":"application/json"},
@@ -49,9 +66,16 @@ async function requestShowcase() {
         } else console.log("no response")
 
          let botmessage = document.createElement("div");
+         let hr = document.createElement("hr")
          botmessage.className = "botmessage";
          chatbox.appendChild(botmessage);
+         chatbox.appendChild(hr);
          botmessage.textContent = data["response"];
+         chatbox.scrollTo({
+             top: chatbox.scrollHeight,
+             behavior: "smooth" 
+            });
+        sending = false;
     } else console.log("not ok")
 }
 
@@ -62,5 +86,5 @@ async function requestShowcase() {
      send.style.backgroundColor = "#4CAF50";
    }
  });
-
+ 
 fetch("https://geminiapireq.smrnw.de/ping")

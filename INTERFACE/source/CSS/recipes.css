@@ -1,0 +1,30 @@
+        .scrollframe{
+            height: fit-content;
+
+            overflow-x: scroll;
+
+            display: flex;
+            flex-direction: row;
+
+            gap: 1rem;
+            padding-bottom: 10px;
+        }
+
+        .scrollframe .card {
+            flex-shrink: 0;
+        }
+
+        .scrollframe::-webkit-scrollbar {
+            height: 8px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+
+        .scrollframe::-webkit-scrollbar-thumb {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .title {
+            font-size: 2rem;
+        }
