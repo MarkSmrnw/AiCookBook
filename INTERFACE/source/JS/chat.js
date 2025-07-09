@@ -12,6 +12,8 @@ let collapsep = collapse.querySelector("p")
 let chatsbox = document.getElementById("chatlist")
 let sending;
 
+let botmessage
+
 let offen = true;
 collapse.addEventListener("click", () => {
     if (offen) {
@@ -68,6 +70,7 @@ if (welcomemessage) welcomemessage.remove()
 chatbox.appendChild(usermessage);
 usermessage.textContent = input.value;
 requestShowcase();
+tempBotMessage()
 input.value = ""
 
 chatbox.scrollTo({
@@ -89,15 +92,22 @@ input.addEventListener("keydown", (event) => {
     }
 });
 
+function tempBotMessage() {
+    botmessage = document.createElement("div");
+    botmessage.className = "botmessage";
+    chatbox.appendChild(botmessage);
+
+    botmessage.textContent = "Cookin' things up for you..."
+}
 
 async function requestShowcase() {
 
     sending = true;
 
-    let antwort = await fetch("https://127.0.0.1/test", {
+    let antwort = await fetch("https://geminiapireq.smrnw.de/cookai/generate", {
         method : "POST",
         headers : {"Content-Type":"application/json"},
-        body : JSON.stringify({"prompt": input.value, "userId":123})
+        body : JSON.stringify({"prompt": input.value, "userId":window.getCurrentUserId(), "chatId":"chat1"})
     })
 
     if (antwort.ok) {
@@ -108,12 +118,10 @@ async function requestShowcase() {
             console.log(data["response"])
         } else console.log("no response")
 
-         let botmessage = document.createElement("div");
          let hr = document.createElement("hr")
-         botmessage.className = "botmessage";
-         chatbox.appendChild(botmessage);
+         
          chatbox.appendChild(hr);
-         botmessage.textContent = data["response"];
+         botmessage.innerText = data["response"];
          chatbox.scrollTo({
              top: chatbox.scrollHeight,
              behavior: "smooth" 
@@ -130,4 +138,4 @@ async function requestShowcase() {
    }
  });
  
-fetch("https://127.0.0.1/ping")
+fetch("https://geminiapireq.smrnw.de/cookai/ping")

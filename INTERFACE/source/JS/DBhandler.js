@@ -101,6 +101,6 @@ window.signOut = function() {
     })
 }
 
-function returnUserId() {
+window.getCurrentUserId = function() {
     return UID
 }

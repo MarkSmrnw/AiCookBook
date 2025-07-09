@@ -3,3 +3,4 @@ flask
 dotenv
 flask_cors
 firebase_admin
+datasets
