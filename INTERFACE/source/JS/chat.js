@@ -94,7 +94,7 @@ async function requestShowcase() {
 
     sending = true;
 
-    let antwort = await fetch("https://geminiapireq.smrnw.de/test", {
+    let antwort = await fetch("https://127.0.0.1/test", {
         method : "POST",
         headers : {"Content-Type":"application/json"},
         body : JSON.stringify({"prompt": input.value, "userId":123})
@@ -130,4 +130,4 @@ async function requestShowcase() {
    }
  });
  
-fetch("https://geminiapireq.smrnw.de/ping")
+fetch("https://127.0.0.1/ping")

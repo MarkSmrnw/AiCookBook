@@ -101,7 +101,7 @@ client = genai.Client(api_key=key)
 flaskclient = Flask(__name__)
 CORS(flaskclient)
 
-@flaskclient.route("/test", methods=["POST"])
+@flaskclient.route("/generate", methods=["POST"])
 def thisisatest():
     try:
         if request.is_json:
