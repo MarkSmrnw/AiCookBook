@@ -126,7 +126,7 @@ TOOLS:
                 ONLY USE NOTE OR NOTES, THIS IS IMPORTANT!
 
     It's important to always keep yourself short, so you can understand a lot of notes quickly.
-    You will be reading those again. These notes are for you.
+    You will be reading those again. These notes are for you. Write them in english.
 
     Always use this if you wanna note / remember something for later on. 
 
@@ -175,7 +175,18 @@ def aiGenerate():
             print(data)
             print("")
 
-            if data["prompt"] and data["userId"] and data["chatId"]:
+            if "prompt" in data and "userId" in data and "chatId" in data:
+
+                if data["userId"] != "aCOnIRmhCxbawMjuPcdxHX5UVO72":
+                    return jsonify({"response":"Sorry, this feature is locked to Mark's account as of now."}), 200
+                
+                if data["userId"] == "aCOnIRmhCxbawMjuPcdxHX5UVO72": #Card test setup
+                    return jsonify({"response":"GENERATED AI RECIPE RECOMMENDATION", "cards":{
+                        "1":{"name":"food1", "description":"TEMP TEXT ABT FOOD ONE. I THINK THIS WILL SUIT THE USER!", "level":"REALLY easy.", "time":"5 Minutes"},
+                        "2":{"name":"food2", "description":"This will be a very good choice omg! I really want you to try this!", "level":"ULTRA HARD", "time":"500 Minutes"}
+                    }})
+
+                print("pass")
 
                 prompt = data["prompt"]
                 user = data["userId"]
@@ -189,8 +200,9 @@ def aiGenerate():
                     data = msgs.to_dict()
                     amnt = len(data)
 
-                    print(data)
-                    print(amnt)
+                    textToAdd = "USER >> " + prompt
+                    data[str(amnt)] = textToAdd
+                    msgs_ref.set(data)
 
                 prompt_with_ctx = f"UserID: {user}, ChatID: {chat}\nUser message: {prompt}"
 
@@ -202,6 +214,19 @@ def aiGenerate():
                     )
                 )
                 print(response.text)
+
+                if msgs.exists:
+                    chat_ref = DB.collection("UserChats").document(user).collection(chat)
+                    msgs_ref = chat_ref.document("messages")
+                    msgs = msgs_ref.get()
+                    data = msgs.to_dict()
+                    amnt = len(data)
+
+                    textToAdd = "YOU >> " + response.text
+
+                    data[str(amnt)] = textToAdd
+                    msgs_ref.set(data)
+
                 return jsonify({"response":response.text}), 200
             
             else:

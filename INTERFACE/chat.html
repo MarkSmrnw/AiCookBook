@@ -14,6 +14,16 @@
     <script src="source/JS/chat.js" type="module"></script>
 
     <link rel="shortcut icon" href="source/media/images/WHITE-MODE-LOGO2.png" type="image/x-icon">
+
+    <style>
+      #botcard{
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 10px;
+        gap: 20px;
+      }
+    </style>
   </head>
 
 
@@ -24,7 +34,7 @@
   </div>
 
   <div style="display: flex; position: relative; z-index: 100;" class="text-white">
-  <div id="chatlist" class="darkmode tertiary" style="width: 30%">
+  <div id="chatlist" style="width: 30%">
     <ul>
       <li class="collapselist"><img src="source/media/symbols/menu.svg" alt="menu_button"> <p>Collapse chats</p></li></li>
       <br>
@@ -39,18 +49,43 @@
     
     <div id="chatdiv">
       <div id="chatbox">
-        <div id="startwelcomemessage" class="d-flex justify-content-center align-items-center text-white" style="margin-top: auto; margin-bottom: auto;"> 
-        <h4>Hey. I'm cook.ai!</h4>
-      </div>
-      </div>
-      <div id="inputsection">
-        <textarea id="input" placeholder="Are you searching for a new recipie?"></textarea> 
-        <button id="send">
-          <span class="material-symbols-outlined">
-            arrow_upward
-          </span>
+        <!--<div id="startwelcomemessage" class="d-flex justify-content-center align-items-center text-white" style="margin-top: auto; margin-bottom: auto;"> 
+        <h4>Hey. I'm cook.ai!</h4></div>-->
+        <div class="botmessage" style="background-color: aqua;">
+          Here is a good recipe that matches the parameters
         </div>
+          <div id="botcard" style="margin-left: 10%;">
+            <div class="card bg-dark text-white" style="width: 15rem;">
+              <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text" style="font-size: 1rem;">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+              </div>
+              <ul class="list-group-dark list-group-flush" style="font-size: 1rem;">
+                <li class="list-group-item">Duration: 5 Minutes</li>
+                <li class="list-group-item">Beginner skill needed</li>
+              </ul>
+            </div>
+            <div class="card bg-dark text-white" style="width: 15rem;">
+              <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text" style="font-size: 1rem;">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+              </div>
+              <ul class="list-group-dark list-group-flush" style="font-size: 1rem;">
+                <li class="list-group-item">Duration: 5 Minutes</li>
+                <li class="list-group-item">Beginner skill needed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="inputsection">
+          <textarea id="input" placeholder="Are you searching for a new recipie?"></textarea> 
+          <button id="send">
+            <span class="material-symbols-outlined">
+              arrow_upward
+            </span>
+          </div>
       </div>
+  </div>
   </div>
   </div>
   <script src="source/JS/DBhandler.js" type="module"></script>

@@ -4,7 +4,6 @@ let chatbox = document.getElementById("chatbox");
 let input = document.getElementById("input");
 let send = document.getElementById("send");
 let welcomemessage = document.getElementById("startwelcomemessage")
-let usermessage = document.createElement("div")
 let chatslist = document.querySelectorAll(".chatAdd, .chatItem")
 let collapse = document.getElementsByClassName("collapselist")[0]
 let collapseimg = collapse.querySelector("img");
@@ -57,6 +56,8 @@ let rand = Math.floor(Math.random() * placeholders.length)
 input.placeholder = placeholders[rand] 
 
 function sendMessage(){
+    let usermessage = document.createElement("div")
+
     
     if(input.value.trim() == "") {
         input.value = "";
@@ -118,6 +119,10 @@ async function requestShowcase() {
             console.log(data["response"])
         } else console.log("no response")
 
+        if (data["cards"]) {
+            console.log("WE RECIEVED CARDS!")
+        }
+
          let hr = document.createElement("hr")
          
          chatbox.appendChild(hr);
@@ -132,9 +137,9 @@ async function requestShowcase() {
 
  input.addEventListener("input", () => {
    if (input.value.trim() === "") {
-     send.style.backgroundColor = "rgb(108, 108, 108)";
+     send.style.background = "";
    } else {
-     send.style.backgroundColor = "#4CAF50";
+     send.style.background = "radial-gradient(circle, rgba(38, 255, 0, 0.75) 0%, rgba(94, 255, 0, 0.74) 100%)";
    }
  });
  

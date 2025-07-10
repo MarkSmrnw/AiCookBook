@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     async function load() {
+        
         const NAVCONTAINER = document.getElementById("navbar-container")
 
         console.log("!")
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             NAVCONTAINER.innerHTML = navHTML
         }
-
+        apply()
     }
 
     load()
