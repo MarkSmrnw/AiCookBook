@@ -15,6 +15,7 @@ let sending;
 
 let botmessage
 
+
 let offen = true;
 collapse.addEventListener("click", () => {
     if (offen) {
@@ -60,7 +61,7 @@ function loadRecipeFromParams() {
     const recipeName = urlParams.get("recipeName")
 
     if (recipeName) {
-        let randReq = ["I really like the idea of cooking ", "Can you help me cook ", "I want to try to cook ", "I'd love to cook right now, can you try helping me with "]
+        let randReq = ["I really like the idea of cooking ", "Can you help me cook ", "I want to try to cook ", "I'd love to cook aright now, can you try helping me with "]
         let rand = Math.floor(Math.random() * randReq.length)
         input.value = randReq[rand] + recipeName
     } else {

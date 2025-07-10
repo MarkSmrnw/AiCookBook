@@ -43,7 +43,7 @@ search.addEventListener("click", (e)=>{
     
 })
 
-function createCards(){
+function createCards(reihe){
 
     let lastitem = [];
 
@@ -58,13 +58,14 @@ function createCards(){
         }
     
     lastitem.push(randomnum);
-    cardcreate(randomnum,reciperow1);
+    cardcreate(randomnum,reihe);
 
     }
 }
 
 function cardcreate(num,row){
     let cardDiv = document.createElement("div");
+    cardDiv.dataset.num = num;
 
     if(!window.darkmode){
          cardDiv.classList.add("card", "text-black");
@@ -97,12 +98,22 @@ function cardcreate(num,row){
     cardBody.appendChild(cardText)
 }
 
-let card = document.querySelectorAll(".card")
-card.forEach(button => {
-    button.addEventListener("click", ()=>{
-        console.log("hjfoiwjfoiehjf")
-    })
+document.addEventListener("click", (e) => {
+    const clickedCard = e.target.closest(".card");
+    if (clickedCard) {
+        let number = clickedCard.dataset.num
+        let name = foods[number].name
+        let description = foods[number].beschreibung;
+        let params = new URLSearchParams({
+            recipeId:number,
+            recipeName: name,
+            recipeDescription: description
+        })
+        window.location.href = `/INTERFACE/chat.html?${params.toString()}`
+    }else return;
 });
 
 console.log(foods)
-createCards();
+createCards(reciperow1);
+createCards(reciperow2);
+createCards(reciperow3);

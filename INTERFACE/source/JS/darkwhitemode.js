@@ -6,10 +6,6 @@ class ThemeToggle {
 
     init() {
         this.setupButton();
-        setTimeout(() => {
-            
-            this.loadTheme();
-        }, 400);
     }
 
     setupButton() {

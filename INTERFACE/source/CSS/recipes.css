@@ -1,10 +1,15 @@
+.container {
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
 .card{
+    height: 360px;
 }
 .card:hover{
     transform: scale(1.02);
     cursor: pointer;
     transition: 0.2s ease-in-out;
-    z-index: 100;
 }
 
 form {
@@ -29,12 +34,12 @@ form > input {
 .scrollframe {
     height: fit-content;
     overflow-x: scroll;
-    overflow-y: visible;
+    overflow-y: hidden;
     display: flex;
     flex-direction: row;
     gap: 1rem;
     padding-bottom: 10px;
-    justify-content: center;
+    align-items: end;
 }
 .scrollframe .card {
     flex-shrink: 0;
