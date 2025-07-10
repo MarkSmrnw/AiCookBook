@@ -104,7 +104,7 @@ async function requestShowcase() {
 
     sending = true;
 
-    let antwort = await fetch("https://geminiapireq.smrnw.de/cookai/generate", {
+    let antwort = await fetch("http://127.0.0.1:3007/generate", {
         method : "POST",
         headers : {"Content-Type":"application/json"},
         body : JSON.stringify({"prompt": input.value, "userId":window.getCurrentUserId(), "chatId":"chat1"})
@@ -138,4 +138,4 @@ async function requestShowcase() {
    }
  });
  
-fetch("https://geminiapireq.smrnw.de/cookai/ping")
+fetch("http://127.0.0.1:3007/ping")

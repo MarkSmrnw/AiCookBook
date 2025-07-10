@@ -66,14 +66,22 @@ def getChatHistory(USERID:str, CHATID:str) -> dict:
     print(USERID)
     print(CHATID)
 
-    r = {
-            1:"USER >> Hallo!",
-            2:"YOU >> Hallo Mark! Lass uns was zusammen kochen! Kannst du mir kurz von deinen Allergien erzählen, was du nicht essen kannst?",
-            3:"USER >> Nur Erdnüsse, das wars.",
-            4:"YOU >> Alles klar! Hast du eine idee was es heute so zu essen geben könnte?"
-        }
+    msgs_ref = DB.collection("UserChats").document(USERID).collection(CHATID).document("messages")
+    msgs = msgs_ref.get()
+
+    if msgs.exists:
+        return msgs.to_dict()
     
-    return r
+    return {}
+
+def gerUserNotes(USERID:str) -> dict:
+    """
+    This will return a dict of all notes about the user.
+    
+    Explination:
+    - USERID : The USERID shared in your request."""
+
+    
 
 if __name__ == "__main__":
     print("FIREBASE DEBUG!")
