@@ -1,4 +1,5 @@
 import os
+import time
 import flask
 import dotenv
 
@@ -181,6 +182,7 @@ def aiGenerate():
                     return jsonify({"response":"Sorry, this feature is locked to Mark's account as of now."}), 200
                 
                 if data["userId"] == "aCOnIRmhCxbawMjuPcdxHX5UVO72": #Card test setup
+                    time.sleep(2)
                     return jsonify({"response":"GENERATED AI RECIPE RECOMMENDATION", "cards":{
                         "1":{"name":"food1", "description":"TEMP TEXT ABT FOOD ONE. I THINK THIS WILL SUIT THE USER!", "level":"REALLY easy.", "time":"5 Minutes"},
                         "2":{"name":"food2", "description":"This will be a very good choice omg! I really want you to try this!", "level":"ULTRA HARD", "time":"500 Minutes"}

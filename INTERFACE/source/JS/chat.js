@@ -98,7 +98,7 @@ function tempBotMessage() {
     botmessage.className = "botmessage";
     chatbox.appendChild(botmessage);
 
-    botmessage.textContent = "Cookin' things up for you..."
+    botmessage.innerHTML = `<div class="loader2"></div>`
 }
 
 async function requestShowcase() {
@@ -121,6 +121,48 @@ async function requestShowcase() {
 
         if (data["cards"]) {
             console.log("WE RECIEVED CARDS!")
+
+            console.log(data["cards"])
+
+            let oneHasBeenRemoved = false
+
+            for (let key in data["cards"]) {
+
+                console.log(key)
+                const chatbox = document.getElementById("chatbox")
+                let botcard = document.getElementById("botcard")
+
+                if ((botcard && !oneHasBeenRemoved) || !botcard) {
+                    if (botcard) botcard.remove()
+                    oneHasBeenRemoved = true
+
+                    botcard = document.createElement("div")
+                    botcard.id = "botcard"
+                    botcard.style= "margin-left: 10%;"
+                    chatbox.appendChild(botcard)
+                }
+                
+                const name = data["cards"][key]["name"]
+                const desc = data["cards"][key]["description"]
+                const leve = data["cards"][key]["level"]
+                const time = data["cards"][key]["time"]
+
+
+                const INNER = `
+                    <div class="card bg-dark text-white" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text" style="font-size: 1rem;">${desc}</p>
+                    </div>
+                    <ul class="list-group-dark list-group-flush" style="font-size: 1rem;">
+                        <li class="list-group-item">${time}</li>
+                        <li class="list-group-item">${leve}</li>
+                    </ul>
+                    <a href="chat.html" class="btn btn-secondary">Cook it!</a>
+                    </div>`
+
+                botcard.innerHTML += INNER
+                }
         }
 
          let hr = document.createElement("hr")

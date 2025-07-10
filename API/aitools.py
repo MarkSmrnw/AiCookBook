@@ -9,6 +9,8 @@ firebase_admin.initialize_app(CRED)
 
 DB = firestore.client()
 
+
+
 def getUserPreferences(USERID:str=None) -> dict:
     """
     This will return a dictionary of the Users preferences / allergies currently known.
