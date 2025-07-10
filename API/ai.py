@@ -3,7 +3,7 @@ import time
 import flask
 import dotenv
 
-from aitools import getUserPreferedLanguage, getUserPreferedNickname, getChatHistory, getUserNotes, setUserNotes
+from aitools import getUserPreferedLanguage, getUserPreferedNickname, getChatHistory, getUserNotes, setUserNotes, addCard
 from aitools import DB
 
 from flask import request, jsonify, Flask
@@ -117,6 +117,8 @@ TOOLS:
     This will set a new note for the user. That will make you remember what you have already asked for and understood about the user.
     It is like you are taking notes and learning about the user.
 
+    Please use this whenever you recieve relevant information about the user and the food they eat.
+
     You generally want to check if you already have that thing noted down before you note something new down.
 
     Variables:  USERID, this is the UserID that is given to you in your request.
@@ -132,6 +134,13 @@ TOOLS:
     Always use this if you wanna note / remember something for later on. 
 
     This returns True if it was successful or False when it fails.
+
+- addCard
+
+    This will append Cards to your message. These are used to highlight recipes the user might like.
+    Use this when you have food or a recipe that matches the users preferences and keep yourself short when you use these cards.
+
+    E.G "I think these will fit your taste very well, check them out". Something like that
 
 - setUserNotes
 
@@ -212,7 +221,7 @@ def aiGenerate():
                     model="gemini-2.5-flash", contents=prompt_with_ctx,
                     config=types.GenerateContentConfig(
                         system_instruction=MASTER_PROMPT,
-                        tools=[getUserPreferedLanguage, getUserPreferedNickname, getChatHistory, getUserNotes, setUserNotes]
+                        tools=[getUserPreferedLanguage, getUserPreferedNickname, getChatHistory, getUserNotes, setUserNotes, addCard]
                     )
                 )
                 print(response.text)
