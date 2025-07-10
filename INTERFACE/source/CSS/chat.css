@@ -1,5 +1,5 @@
-#chatdiv{
-
+/* Chat Container */
+#chatdiv {
     position: relative;
     display: flex;
     justify-content: center;
@@ -8,18 +8,22 @@
     border-radius: 10px;
     top: 5vh;
 }
-#chatbox{
+
+/* Chatbox */
+#chatbox {
     height: 80%;
     width: 80%;
     overflow-y: auto;
     padding: 10px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 15px;
     font-size: 24px;
+    box-sizing: border-box;
 }
-#inputsection{
+
+/* Input Section */
+#inputsection {
     position: absolute;
     bottom: 1%;
     height: 60px;
@@ -28,12 +32,11 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    
     box-shadow: 1px 1px 1px 2px black;
-
     border-radius: 20px;
 }
-#input{
+
+#input {
     width: 80%;
     height: 50px;
     padding: 10px;
@@ -42,16 +45,17 @@
     border: none;
     outline: none;
     background: transparent;
-    word-break:normal;
+    color: white;
+    word-break: normal;
     overflow-y: visible;
     resize: none;
-    justify-content: center;
-    color: white;
 }
-#input::placeholder{
+
+#input::placeholder {
     color: rgb(199, 199, 199);
 }
-#send{
+
+#send {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,45 +68,41 @@
     cursor: pointer;
     border: 0.5px solid black;
 }
-.usermessage{
+
+/* Messages */
+.usermessage, .botmessage {
     position: relative;
     width: auto;
     max-width: 80%;
-    align-self: end;
     word-break: break-word;
     animation: 0.5s ease-in-out;
     opacity: 1;
     border-radius: 10px;
-    box-sizing: border-box;
     padding: 10px;
-    margin-right: 50px;
+    box-sizing: border-box;
     color: white;
     background-color: #212529;
 }
-.usermessage::before{
+
+.usermessage {
+    align-self: end;
+    margin-right: 50px;
+}
+
+.usermessage::before {
     font-size: 30px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: -50px; 
+    right: -50px;
 }
 
-.botmessage{
-    position: relative;
-    width: auto;
-    max-width: 80%;
+.botmessage {
     align-self: start;
-    word-break: break-word;
-    animation: 0.5s ease-in-out;
-    opacity: 1;
-    border-radius: 10px;
-    box-sizing: border-box;
-    padding: 10px;
     margin-left: 50px;
-    color: white;
-    background-color: #212529;
 }
-.botmessage::before{
+
+.botmessage::before {
     content: "";
     background-image: url("/INTERFACE/source/media/images/WHITE-MODE-LOGO2.png");
     background-size: cover;
@@ -113,14 +113,17 @@
     width: 60px;
     top: 50%;
     transform: translateY(-50%);
-    left: -50px; 
+    left: -50px;
 }
-hr{
-    position: relative;
+
+/* HR */
+hr {
     color: white;
 }
-#startwelcomemessage > h4{
-    background: linear-gradient(45deg, white 0%, rgb(0, 0, 0) 10%, rgba(255, 255, 255, 1) 30%, #ffffff 50%, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 1) 100%);
+
+/* Welcome Animation */
+#startwelcomemessage > h4 {
+    background: linear-gradient(45deg, white 0%, black 10%, white 30%, white 50%, white 70%, white 100%);
     background-size: 300% auto;
     background-clip: text;
     color: transparent;
@@ -132,115 +135,94 @@ hr{
     0% {
         background-position: 100% 0;
     }
-    20% {
-        background-position: -100% 0;
-    }
-    100% {
+    20%, 100% {
         background-position: -100% 0;
     }
 }
 
+/* Chat List Sidebar */
+#chatlist {
+    z-index: 10;
+    width: 20%;
+    height: 100%;
+    background-color: #343a40;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
+#chatlist > ul {
+    padding: 0;
+    list-style: none;
+}
+
+.chatItem, .chatAdd {
+    max-width: 300px;
+    position: relative;
+    left: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.chat-collapsed {
+    max-width: 55px;
+}
+
+#chatlist > ul > li {
+    background-color: #212529;
+    padding: 2%;
+    border-radius: 20px;
+    margin: 5% 0;
+    cursor: pointer;
+    display: flex;
+    justify-items: center;
+}
+
+#chatlist > ul > li > p {
+    margin: 10px;
+}
+
+#chatlist > ul > li > img {
+    filter: invert(0%);
+    margin: auto 0;
+}
+
+.collapselist {
+    max-width: 300px;
+    position: relative;
+    z-index: 100;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 791px) {
+    .collapselist, .chatAdd, .chatItem {
+        width: fit-content;
+    }
+    .collapselist > img, .chatAdd > img {
+        width: 50px;
+        height: 50px;
+    }
+    .chatItem > img {
+        width: 30px;
+        height: 30px;
+    }
+    .collapselist > p, .chatAdd > p, .chatItem > p {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
     #chatlist {
-      z-index: 10;
-      width: 20%;
-      height: 100%;
-      background-color: #343a40;
-      overflow-y: auto;
-      padding: 10px;
-      box-sizing: border-box;
+        position: absolute;
     }
-    .collapselist{
-        max-width: 300px;
-        position: relative;
-        z-index: 100;
-        transition: all 0.5s ease-in-out;
+    .collapselist {
+        width: 40px;
     }
-
-    #chatlist > ul {
-     padding: 0;
-     list-style-type: none;
-
+    .collapselist > img {
+        width: 40px;
+        height: 40px;
     }
-    .chatItem, .chatAdd {
-     max-width: 300px;
-     position: relative;
-     left: 0;
-     transition: all 0.5s ease-in-out;
+    .chatAdd, .chatItem {
+        display: none;
     }
-    .chat-collapsed {
-        max-width: 55px;
-    }
-
-    #chatlist > ul > li {
-      background-color: #212529;
-      padding: 2%;
-
-
-      border-radius: 20px;
-
-      list-style-type: none;
-      margin: 5% 0 5% 0;
-
-      cursor: pointer;
-    }
-
-    #chatlist > ul > li > img {
-      filter: invert(0%); /* FÜR LIGHTMODE: INVERT 100%! */
-      margin-top: auto; margin-bottom: auto;
-    }
-
-    @media (max-width: 791px) {
-
-
-    .collapselist{
-      width: fit-content;
-    }
-    .collapselist > img{
-      width: 50px;
-      height: 50px;
-    }
-    .collapselist > p{
-      display: none;
-    }
-    .chatAdd{
-      width: fit-content;
-    }
-    .chatAdd > img{
-      width: 50px;
-      height: 50px;
-    }
-    .chatAdd > p{
-      display: none;
-    }
-    .chatItem{
-      width: fit-content;
-    }
-    .chatItem > img{
-      width: 30px;
-      height: 30px;
-    }
-    .chatItem > p{
-      display: none;
-    }
-    }
-
-    @media (max-width: 400px){
-        #chatlist {
-            position: absolute;
-
-        }
-        .collapselist{
-            width: 40px;
-        }
-        .collapselist > img{
-            width: 40px;
-            height: 40px;
-        }
-        .chatAdd{
-            display: none;
-        }
-        .chatItem{
-            display: none;
-        }
-    }
+}

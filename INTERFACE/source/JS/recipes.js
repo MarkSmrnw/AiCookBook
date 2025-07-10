@@ -1,61 +1,101 @@
 // Get reference to the row element where recipe cards will be displayed
+let reciperow0 = document.getElementById("row0");
+let row0title = document.getElementById("searchtitle")
 let reciperow1 = document.getElementById("row1");
 let reciperow2 = document.getElementById("row2");
 let reciperow3 = document.getElementById("row3");
+let input = document.getElementById("searchinput")
+let search = document.getElementById("searchbutton")
+let searchrow = document.getElementById("searchrow")
 
-// Function to create recipe cards dynamically
+search.addEventListener("click", (e)=>{
+    e.preventDefault();
+
+    let suche = input.value
+    if(suche.trim() === ""){
+        return
+    }
+    
+    suche = suche.toLowerCase().trim().replace(/\s+/g, "");
+    
+    const gefundeneFoods = foods
+    .map((food, index) => {
+        let name = food.name.toLowerCase().trim().replace(/\s+/g, "");
+        let beschreibung = food.beschreibung.toLowerCase().trim().replace(/\s+/g, "");
+        if (name.includes(suche) || beschreibung.includes(suche)) {
+            return { index }; 
+        }
+        return null;
+    })
+    .filter(item => item !== null);
+    reciperow0.innerHTML = ""
+    if(gefundeneFoods.length == 0){
+        console.log("lolooll")
+        row0title.style.display = "block"
+        row0.style.display = "flex"
+    }
+
+    gefundeneFoods.forEach(e => {
+        cardcreate(e.index,reciperow0)
+    });
+    row0title.style.display = "block"
+    row0.style.display = "flex"
+    
+})
+
 function createCards(){
-    // Array to track already selected recipe indices to avoid duplicates
+
     let lastitem = [];
 
-    // Generate 10 random recipe cards
+
     for(let i = 0; i < 10; i++){
-        // Generate random index from foods array
+
         let randomnum = Math.floor(Math.random() * foods.length)
         console.log(foods[randomnum])
         
-        // Check if this recipe was already selected
         if(lastitem.includes(randomnum)){
-            i--; // Decrement counter to retry with different recipe
             continue;
         }
     
-    // Add current recipe index to prevent duplicates
     lastitem.push(randomnum);
+    cardcreate(randomnum,reciperow1);
 
-    // Create main card container
+    }
+}
+
+function cardcreate(num,row){
     let cardDiv = document.createElement("div");
-    cardDiv.classList.add("card", "bg-dark", "text-white");
+
+    if(!window.darkmode){
+         cardDiv.classList.add("card", "text-black");
+    }
+    else{
+        cardDiv.classList.add("card", "bg-dark", "text-white");
+    } 
+    
     cardDiv.style.width = "18rem";
 
-    // Create and configure recipe image
     let img = document.createElement("img");
-    img.src = foods[randomnum].image;
+    img.src = foods[num].image;
     img.classList.add("card-img-top");
 
-    // Create card body container
     let cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
 
-    // Create recipe title element
     let cardTitle = document.createElement("h5");
     cardTitle.classList.add("card-title");
-    cardTitle.textContent = foods[randomnum].name;
+    cardTitle.textContent = foods[num].name;
 
-    // Create recipe description element
     let cardText = document.createElement("p");
     cardText.classList.add("card-text");
-    cardText.textContent = foods[randomnum].beschreibung;
+    cardText.textContent = foods[num].beschreibung;
 
-    // Append elements to DOM in hierarchical order
-    reciperow1.appendChild(cardDiv)
+    row.appendChild(cardDiv)
     cardDiv.appendChild(img)
     cardDiv.appendChild(cardBody)
     cardBody.appendChild(cardTitle)
     cardBody.appendChild(cardText)
-    }
 }
 
-// Debug output and initialize card creation
 console.log(foods)
 createCards();

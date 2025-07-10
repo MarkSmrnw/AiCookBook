@@ -14,7 +14,7 @@ function createCard(
     if (darkmode) {
         card = `<div class="card bg-dark text-white" id="${id}" style="${cardStyle}">`
     } else {
-        card = `<div class="card" id="${id}" style="${cardStyle}2>`
+        card = `<div class="card" id="${id}" style="${cardStyle}">`
     }
 
     let hasBody = false
@@ -156,8 +156,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 foods[randomIndex].name,
                 foods[randomIndex].beschreibung,
                 `<a href="chat.html" class="btn btn-secondary">Try it!</a>`,
-                 foods[randomIndex].image,
-                [], "width: 18rem;", true, "latestCard" // OPACITY HINZUFÜGEN
+                foods[randomIndex].image,
+                [], "width: 18rem;", window.darkmode, "latestCard"
             )
             rotationWrapper.innerHTML = newCard
 
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(function() {
                 card.classList.remove("recipe-rotation")
 
-                function mouseEnterLogic() {
+                function mouseEnterLogic() {  
                     mouseCaptured = true 
                 }
                 function mouseExitLogic() {
