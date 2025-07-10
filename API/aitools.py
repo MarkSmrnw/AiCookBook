@@ -9,7 +9,9 @@ firebase_admin.initialize_app(CRED)
 
 DB = firestore.client()
 
-
+# CARD VALUES
+CARD_AMNT = 0
+CARD_DICT = {}
 
 def getUserPreferences(USERID:str=None) -> dict:
     """
@@ -140,7 +142,7 @@ def setUserNotes(USERID:str, NOTE:str="", NOTES:list[str]=[]) -> bool:
         print(str(E))
         return False
     
-def removeUserNotes(USERID:str, INDEX:int, INDEXS:list=[]):
+def removeUserNotes(USERID:str, INDEX:int, INDEXS:list=[]) -> bool:
     """
     Removes the note in the memory at the given index
     
@@ -168,15 +170,35 @@ def removeUserNotes(USERID:str, INDEX:int, INDEXS:list=[]):
     except Exception as E:
         print("ERROR!")
         print(str(E))
-    
+
+def addCard(cardTitle:str, cardDescription:str, cardTime:str, cardLevel:str) -> bool:
+    if cardTitle and cardDescription and cardTime and cardLevel:
+
+        global CARD_AMNT
+        global CARD_DICT
+
+        CARD_AMNT += 1
+        CARD_DICT[len(CARD_DICT)] = {
+            "name":cardTitle, "description":cardDescription, "level":cardLevel, "time":cardTime
+        }
+
+    else:
+        return False
 
 if __name__ == "__main__":
     print("FIREBASE DEBUG!")
 
     #"aCOnIRmhCxbawMjuPcdxHX5UVO72"
 
+    # my wonderful beloved test commands
+
     #setUserNotes("aCOnIRmhCxbawMjuPcdxHX5UVO72", NOTES=["dislikes olives", "No Allergies"])
-    removeUserNotes("aCOnIRmhCxbawMjuPcdxHX5UVO72", INDEX=1)
+    #removeUserNotes("aCOnIRmhCxbawMjuPcdxHX5UVO72", INDEX=1)
+
+    addCard("Sphagetti", "Pasta with preferably ALOT of tomato sauce!!", "This will take about 20 Minutes", "Beginner level")
+
+    print(CARD_AMNT)
+    print(CARD_DICT)
 
     print("loop to keep alive")
     while True:

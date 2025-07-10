@@ -97,5 +97,12 @@ function cardcreate(num,row){
     cardBody.appendChild(cardText)
 }
 
+let card = document.querySelectorAll(".card")
+card.forEach(button => {
+    button.addEventListener("click", ()=>{
+        console.log("hjfoiwjfoiehjf")
+    })
+});
+
 console.log(foods)
 createCards();

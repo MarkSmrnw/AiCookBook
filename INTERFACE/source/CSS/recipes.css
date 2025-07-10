@@ -1,3 +1,12 @@
+.card{
+}
+.card:hover{
+    transform: scale(1.02);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    z-index: 100;
+}
+
 form {
     width: clamp(200px, 40%, 300px);
     float: right;
@@ -20,10 +29,12 @@ form > input {
 .scrollframe {
     height: fit-content;
     overflow-x: scroll;
+    overflow-y: visible;
     display: flex;
     flex-direction: row;
     gap: 1rem;
     padding-bottom: 10px;
+    justify-content: center;
 }
 .scrollframe .card {
     flex-shrink: 0;
