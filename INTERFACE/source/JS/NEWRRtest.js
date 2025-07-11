@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newCard = createCard(
                 foods[randomIndex].name,
                 foods[randomIndex].beschreibung,
-                `<a href="chat.html" class="btn btn-secondary">Try it!</a>`,
+                `<a data-num="${randomIndex}" class="btn btn-secondary">Try it!</a>`,
                 foods[randomIndex].image,
                 [], "width: 18rem;", window.darkmode, "latestCard"
             )
@@ -206,6 +206,21 @@ document.addEventListener("DOMContentLoaded", () => {
             } else exitChecks++
         } else {exitChecks = 0}
     }
+
+document.addEventListener("click", (e) => {
+    const clickedCard = e.target.closest(".btn");
+    if (clickedCard) {
+        let number = clickedCard.dataset.num
+        let name = foods[number].name
+        let description = foods[number].beschreibung;
+        let params = new URLSearchParams({
+            recipeId:number,
+            recipeName: name,
+            recipeDescription: description
+        })
+        window.location.href = `/INTERFACE/chat.html?${params.toString()}`
+    }else return;
+});
 
     setInterval(main, 100)
 })

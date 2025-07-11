@@ -13,5 +13,5 @@ for i in range(1000000):
             recipe_name = header
     else:
         recipe_name = "Kein Name gefunden"
-
+    
     print(f"Rezept {i+1}: {recipe_name}")
